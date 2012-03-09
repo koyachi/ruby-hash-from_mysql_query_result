@@ -42,7 +42,7 @@ class Hash
           next if i == 0 && line.match(TABLE_FRAME_PATTERN)
           
           line.chomp!
-          rows = line.gsub(/\s/, "").split("|")[1..-1]
+          rows = line.split("|").map {|s| s.gsub(/\s/, "") }[1..-1]
           result.push(rows)
         end
         result
