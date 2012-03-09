@@ -5,7 +5,7 @@ Create Hash from MySQL query result text.
 ## Example
 
 ```ruby
-data = parse_text(DATA.lines.to_a.join(""))
+data = Hash::FromMysqlQueryResult.parse_text(DATA.lines.to_a.join(""))
 pp data
 # => {:header=>["mysql> SELECT * FROM foo;"],
 #     :fields=>["id", "value"],

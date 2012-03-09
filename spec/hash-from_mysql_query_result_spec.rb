@@ -2,14 +2,27 @@
 $:.unshift File.dirname(__FILE__)
 
 require 'hash-from_mysql_query_result'
+require 'pp'
 
 describe Hash::FromMysqlQueryResult do
   before do
-    @text = DATA.lines.to_a.join("")
+    data = <<-TEST_DATA
+mysql> SELECT * FROM foo;
++----+-------+
+| id | value |
++----+-------+
+|  1 |     A |
+|  2 |     b |
+|  3 |     C |
++----+-------+
+3 rows in set (0.01 sec)
+TEST_DATA
+
+    @text = data.lines.to_a.join("")
   end
 
   it 'should parse_text' do
-    result = parse_text(@text)
+    result = Hash::FromMysqlQueryResult.parse_text(@text)
     result.should eql({
         :header=>["mysql> SELECT * FROM foo;"],
         :fields=>["id", "value"],
@@ -21,13 +34,3 @@ describe Hash::FromMysqlQueryResult do
   end
 end
 
-__END__
-mysql> SELECT * FROM foo;
-+----+-------+
-| id | value |
-+----+-------+
-|  1 |     A |
-|  2 |     b |
-|  3 |     C |
-+----+-------+
-3 rows in set (0.01 sec)

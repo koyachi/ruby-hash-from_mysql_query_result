@@ -3,7 +3,7 @@ require "hash-from_mysql_query_result/version"
 class Hash
   module FromMysqlQueryResult
     class << self
-      @private
+      private
       PARSE_STATUS = {
         :header => 1,
         :table_header => 2,
@@ -12,7 +12,7 @@ class Hash
         :footer => 5
       }
       TABLE_FRAME_PATTERN = /\+\-+\+/
-      
+
       def process_header(lines)
         result = []
         lines.each_with_index do |line, i|
@@ -67,7 +67,7 @@ class Hash
 #        end
       end
       
-      @public
+      public
       def process_file(path)
         file = open(path)
         parse_text(file.read)
