@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require "optparse"
+require "json"
+require "hash-from_mysql_query_result"
+
+def parse_option
+  options = {
+    :file => nil,
+    :output_format => :hash,
+  }
+  OptionParser.new do |opts|
+    opts.banner = "usage: qr2hash filename [--output]"
+    opts.on("-o", "--ouput [FORMAT]", [:hash, :json], "Select output format(hash, json)") do |format|
+      options[:output_format] = format if format
+    end
+  end.parse!
+  options[:file] = ARGV[0]
+
+  if options[:file] == nil
+    puts "file was NOT specified."
+    exit 1
+  end
+  
+  options
+end
+
+options = parse_option
+result = Hash::FromMysqlQueryResult.process_file(options[:file])
+if options[:output_format] == :json
+  puts result.to_json
+else
+  puts result
+end
