@@ -28,6 +28,14 @@ mysql> SELECT * FROM foo;
 
 ```
 
+## Output ruby-hash or json by command line
+
+```
+% q2h ./spec/fixtures/describe_pet.txt -o json
+{"header":["mysql> DESCRIBE pet;"],"fields":["Field","Type","Null","Key","Default","Extra"],"records":[{"Field":"name","Type":"varchar(20)","Null":"YES","Key":"","Default":"NULL","Extra":""},{"Field":"owner","Type":"varchar(20)","Null":"YES","Key":"","Default":"NULL","Extra":""},{"Field":"species","Type":"varchar(20)","Null":"YES","Key":"","Default":"NULL","Extra":""},{"Field":"sex","Type":"char(1)","Null":"YES","Key":"","Default":"NULL","Extra":""},{"Field":"birth","Type":"date","Null":"YES","Key":"","Default":"NULL","Extra":""},{"Field":"death","Type":"date","Null":"YES","Key":"","Default":"NULL","Extra":""}],"footer":[]}
+```
+
+
 ## License
 
 Released under the MIT License - Copyright (c) 2012 koyachi
