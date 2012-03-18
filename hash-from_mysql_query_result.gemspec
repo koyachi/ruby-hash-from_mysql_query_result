@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Hash::FromMysqlQueryResult::VERSION
   s.authors     = ["koyachi"]
   s.email       = ["rtk2106@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/koyachi/ruby-hash-from_mysql_query_result"
   s.summary     = %q{Create Hash from MySQL query result text.}
   s.description = %q{Create Hash from MySQL query result text.}
 
